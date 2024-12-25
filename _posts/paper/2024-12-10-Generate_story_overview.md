@@ -97,34 +97,6 @@ Regressor: OPT-1.3B
 
 ```
 
-
-## Arbitrary Writing Styles
-> 论文：[Learning to Generate Text in Arbitrary Writing Styles](https://arxiv.org/pdf/2312.17242)    
-> 2023.12  
-> 
-
-```
-**问题**  
-LLM模仿著名文家作家的风格非常容易，但如果想通过instruction或ICL来模仿特定作者的风格会比较难。特别是一些风格或写作习惯，即使是语言学家也很难描述。
-
-**方法** 
-STYLEMC: 由LLM和Regressor组成，Regressor经过风格训练，在LLM推理时，重调其概率分布，使输出更符合指定风格。  
-LLM：MPT-7B  
-Regressor: OPT-1.3B
-
-**作者风格
-
-
-**效果**
-- 可以捕获直观的风格特征
-- 可以作为一种有效作者匿名化技术
-- 在零样本设置中，相比LLM更难被检测为AI生成，作者归因于更好地模仿了人类写作风格的能力
-- 开源了模型、数据集、训练脚本
-
-```
-
-
-
 ## Suspenseful Stories
 > 论文：[Creating Suspenseful Stories: Iterative Planning with Large Language Models](https://arxiv.org/abs/2402.17119)    
 > 2024.02  
@@ -584,8 +556,8 @@ LLM在生成长篇故事或大纲时，常常遇到不自然的Pacing问题，�
 > 论文：[MoPS: Modular Story Premise Synthesis for Open-Ended Automatic Story Generation](https://arxiv.org/pdf/2406.05690)    
 > 2024.06  
 > 情节合成
->**Mo**dular Story **P**remise **S**ynthesis (MoPS)
-> "一个故事如果注定失败，那么问题往往出在选题/创意阶段。"
+> **Mo**dular Story **P**remise **S**ynthesis (MoPS)  
+> 一个故事如果注定失败，那么问题往往出在选题/创意阶段。
 
 ```
 **问题**  
@@ -878,6 +850,21 @@ LLMs之间合作进行开放式任务是否可行？达到什么程度？
 - 情感基调和心理深度（Emotional Tone and Psychological Depth）：
 调查文本的情感氛围，特别是它如何通过角色的描绘传达心理复杂性。
 
+
+**Action Space**
+Our action space consists of the following 30 phrases:
+"add suspense", "add action", "add comedy", "add tragedy", "add romance",
+"add mystery", "add conflict", "add character development", "add plot twist",
+"add dialogue", ’add fantasy elements", "add historical context", "add science
+fiction elements", "add horror", "add magical realism", "add philosophical
+themes", "add satire", "add foreshadowing", "add a flashback", "add a dream
+sequence", "add symbolism", "add irony", "add allegory", "add a cliffhanger",
+"add a moral dilemma", "add a subplot", "add an antagonist", "add setting
+details", "add cultural references", and "add humor".
+These actions are generated via prompting GPT-4, 
+with the goal of obtaining more abstract actions forstory guidance.  
+Future work may focus on more fine-grained action generation.
+
 ```
 
 
@@ -1047,37 +1034,134 @@ GPT-4倾向于想象出要么与原始故事偏离太多，要么陷入具体细
 ![whatif_code_architecture.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1735048220488_whatif_code_architecture.jpg)
 
 
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
+## Show, Don't Tell - LIIPA
+> 论文：[Show, Don't Tell: Uncovering Implicit Character Portrayal using LLMs](https://arxiv.org/abs/2412.04576)    
+> 2024.12  
+> [编剧界最著名的格言一共有三句：](https://www.zhihu.com/question/61166119)  
+> “write what you know” ——写你了解的东西。  
+> “writing is rewriting”——写作就是不断重写的过程。 
+> “show, don’t tell.”——展示，而不是告诉。  
 
 ```
 **问题**  
+人物塑造是文学中的重点。现有的人物分析通常集中在显性特征上，对于隐性特征很难分析和评判。
+
+**主要贡献**
+1. 引入了ImPortPrompts（隐性描绘提示），这是一个用于隐性人物描绘分析的数据集
+2. 提出了LIIPA框架，用于分析和评估隐性人物描绘
+3. LIIPA的不同配置（结构化输出、提示类型）实现了公平性-准确性权衡
+    - （LIIPA-direct最大化准确性，LIIPA-sentence最小化不公平性）
+    - LIIPA-sentence和LIIPA-story在准确性和公平性方面都优于之前的COMET基线。
 
 
-**方法** 
+**LIIPA** 
+LIIPA (LLMs for Inferring Implicit Portrayal for Character Analysis) 的流程有三种主要变体：
+
+1. LIIPA-sentence（基于句子的分析）：
+- 输入：将故事拆分成单个句子
+- 步骤：对每个句子，让LLM生成描述特定人物的5个属性词列表
+- 输出：通过另一个LLM评估程序将这些词列表映射为IAP（智力、外表、权力）标签
+
+2. LIIPA-story（基于整个故事的分析）：
+- 输入：使用完整的故事文本
+- 步骤：让LLM基于整个故事上下文为每个人物生成5个属性词列表
+- 输出：同样通过LLM评估程序将词列表映射为IAP标签
+
+3. LIIPA-direct（直接分析）：
+- 输入：完整的故事文本
+- 步骤：直接让LLM根据故事内容评估每个人物的IAP特征
+- 输出：直接得到IAP标签，不需要中间的词列表生成步骤
+
+主要特点：
+- 使用不同的LLM家族来避免自偏好偏差
+  - 使用GPT/Claude生成故事
+  - 使用Gemini进行人物特征分析
+  - 使用GPT-4作为评判器
+
+性能比较：
+- 准确性排序：LIIPA-direct > LIIPA-story > LIIPA-sentence
+- 公平性排序：LIIPA-sentence > LIIPA-story > LIIPA-direct
+- 存在准确性和公平性的权衡
+
+优势：
+- 可以处理更长的文本和更多的人物
+- 能够利用完整的故事上下文
+- 比传统方法(如COMET)表现更好
+
+这三种变体为不同的应用场景提供了灵活的选择，用户可以根据需要在准确性和公平性之间进行权衡。
 
 
-**效果**
+**ImPortPrompts数据集：
+ImPortPrompts数据集是专门为隐含人物特征分析任务设计的数据集，其主要特点如下：
 
+1. 数据集设计目标：
+- 提供更好的跨主题相似性
+- 更高的词汇多样性
+- 更广泛的人物角色表现
+- 专注于隐含而非显式的人物特征描写
+
+2. 数据集规模与结构：
+- 包含2000个样本（故事）
+- 每个故事包含1-5个人物
+- 故事长度在5-30句之间
+- 为每个人物标注三个维度（智力、外表、权力）的特征
+
+3. 主要约束条件：
+- 人物角色约束：每个故事必须包含指定数量的角色（主角、反派、受害者）
+- 隐含描写约束：避免直接使用描述性词汇（如"聪明的"、"漂亮的"等）
+- 社会人口学约束：避免提及性别、种族、宗教等人口统计信息
+- 格式约束：使用特定的命名方式（如Protagonist1、Antagonist1等）
+
+4. 相比现有数据集的优势：
+- 比TinyStories和ROCStories有更好的词汇多样性
+- 比WritingPrompts有更稳定的故事长度分布
+- 更平衡的角色分布（不同于其他数据集过度关注主角）
+- 更好的跨主题语义相似性
+
+5. 数据生成方法：
+- 使用LLMs（GPT和Claude）生成故事
+- 采用树思维（Tree-of-Thoughts）提示策略
+- 包含自动和人工验证步骤
+
+6. 质量控制：
+- 自动验证：检查字数、角色数量等形式约束
+- 人工验证：确保故事符合隐含描写要求
+- 过滤不符合要求的样本
+
+7. 评估指标：
+- 词汇多样性指标：HD-D、Maas、MTLD
+- 语义多样性指标：主题内和主题间相似度、N-gram频率
+
+这个数据集的主要创新在于：
+1. 专注于隐含特征描写
+2. 提供更均衡的角色分布
+3. 确保无人口统计偏见
+4. 保持跨主题的一致性
+
+这些特点使得ImPortPrompts成为测试和开发人物特征分析模型的理想数据集。
 
 ```
 
 
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
+## LFED
+> 论文：[LFED: A Literary Fiction Evaluation Dataset for Large Language Models](https://arxiv.org/abs/2405.10166)    
+> 2024.05   
+> LFED, a **L**iterary **F**iction **E**valuation **D**ataset  
+> 首个针对评估大语言模型长篇文学小说理解能力的中文数据集
 
 ```
-**问题**  
+**评估维度**
+- 角色关系 (Character relationships)
+- 人物性格刻画 (Characterization)
+- 文学风格 (Literary style)
+- 角色行为 (Role behavior)
+- 事件关系 (Event relation)
+- 小说情节 (Fiction plot)
+- 背景主题 (Background topic)
+- 反事实推理 (Counterfactual reasoning)
 
-
-**方法** 
-
-
-**效果**
+**评估方法** 
+多项选择题
 
 
 ```

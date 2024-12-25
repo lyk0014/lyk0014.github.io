@@ -94,43 +94,44 @@ description: 已读和待读Paper列表
 
 ## Story Generation
 📊 **统计**
-- 总论文: 33篇
-- 待读: 9篇
+- 总论文: 30篇
+- 待读: 0篇
 - 进行中: 0篇
-- 已完成: 0篇
+- 已完成: 30篇
 
 
 | ID  | 状态 | 年份 | 收录日期 | 完成日期 | 论文标题 |
 |---|--|---|--|---|---|
-|  2  |  ✅  | 2024 | 2024-12-05 | 2024-12-23 | [Creating Suspenseful Stories: Iterative Planning with Large Language Models](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  3  |  ✅  | 2024 | 2024-12-05 | 2024-12-23 | [SWAG: Storytelling With Action Guidance](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  4  |  ✅  | 2024 | 2024-12-05 | 2024-12-23 | [Weaver: Foundation Models for Creative Writing](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  5  |  ✅  | 2023 | 2024-12-05 | 2024-12-24 | [RecurrentGPT Interactive Generation of (Arbitrarily) Long Text](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  7  |  ✅  | 2023 | 2024-12-05 | 2024-12-23 | [End to End Story Plot Generator](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  8  |  ✅  | 2023 | 2024-12-05 | 2024-12-23 | [LongStory: Coherent, Complete and Length Controlled Long story Generation](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  9  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [StoryVerse: Towards Co-authoring Dynamic Plot with LLM-based Character Simulation via Narrative Planning](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  10  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Large Language Models Fall Short: Understanding Complex Relationships in Detective Narratives](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  11  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [CAT-LLM: Prompting Large Language Models with Text Style Definition for Chinese Article-style Transfer](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  12  |  ✅  | 2023 | 2024-12-05 | 2024-12-23 | [Learning to Generate Text in Arbitrary Writing Styles](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  14  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Navigating the Path of Writing: Outline-guided Text Generation with Large Language Models](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  15  |  ✅  | 2023 | 2024-12-05 | 2024-12-24 | [Improving Pacing in Long-Form Story Planning](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  16  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [MoPS: Modular Story Premise Synthesis for Open-Ended Automatic Story Generation](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  17  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Returning to the Start: Generating Narratives with Related Endpoints](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  19  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Do Language Models Enjoy Their Own Stories? Prompting Large Language Models for Automatic Story Evaluation](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  20  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Reading Subtext: Evaluating Large Language Models on Short Story Summarization with Writers](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  21  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [CollabStory: Multi-LLM Collaborative Story Generation and Authorship Analysis](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  22  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Reflections & Resonance: Two-Agent Partnership for Advancing LLM-based Story Annotation](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  23  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [CMDAG: A Chinese Metaphor Dataset with Annotated Grounds as CoT for Boosting Metaphor Generation](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  25  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Analyzing Nobel Prize Literature with Large Language Models](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  26  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Evaluating Character Understanding of Large Language Models via Character Profiling from Fictional Works](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  28  |  ✅  | 2024 | 2024-12-11 | 2024-12-24 | [LongWriter-glm4-9b](https://lyk0014.github.io/posts/Generate_story_overview/) |
-|  29  |  ⏳  | 2024 | 2024-12-11 | - | WHAT-IF: Exploring Branching Narratives by Meta-Prompting Large Language Models |
-|  30  |  ⏳  | 2024 | 2024-12-19 | - | Show, Don't Tell: Uncovering Implicit Character Portrayal using LLMs |
-|  31  |  ⏳  | 2024 | 2024-12-19 | - | LFED: A Literary Fiction Evaluation Dataset for Large Language Models |
-|  32  |  ⏳  | 2024 | 2024-12-19 | - | Modeling Story Expectations to Understand Engagement: A Generative Framework Using LLMs |
-|  33  |  ⏳  | 2024 | 2024-12-19 | - | Generating Long-form Story Using Dynamic Hierarchical Outlining with Memory-Enhancement |
-|  34  |  ⏳  | 2024 | 2024-12-19 | - | How good is my story? Towards quantitative metrics for evaluating LLM-generated XAI narratives |
-|  35  |  ⏳  | 2024 | 2024-12-24 | - | Dramatron |
+|  1  |  ✅  | 2024 | 2024-12-05 | 2024-12-23 | [Creating Suspenseful Stories: Iterative Planning with Large Language Models](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  2  |  ✅  | 2024 | 2024-12-05 | 2024-12-23 | [SWAG: Storytelling With Action Guidance](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  3  |  ✅  | 2024 | 2024-12-05 | 2024-12-23 | [Weaver: Foundation Models for Creative Writing](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  4  |  ✅  | 2023 | 2024-12-05 | 2024-12-24 | [RecurrentGPT Interactive Generation of (Arbitrarily) Long Text](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  5  |  ✅  | 2023 | 2024-12-05 | 2024-12-23 | [End to End Story Plot Generator](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  6  |  ✅  | 2023 | 2024-12-05 | 2024-12-23 | [LongStory: Coherent, Complete and Length Controlled Long story Generation](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  7  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [StoryVerse: Towards Co-authoring Dynamic Plot with LLM-based Character Simulation via Narrative Planning](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  8  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Large Language Models Fall Short: Understanding Complex Relationships in Detective Narratives](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  9  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [CAT-LLM: Prompting Large Language Models with Text Style Definition for Chinese Article-style Transfer](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  10  |  ✅  | 2023 | 2024-12-05 | 2024-12-23 | [Learning to Generate Text in Arbitrary Writing Styles](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  11  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Navigating the Path of Writing: Outline-guided Text Generation with Large Language Models](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  12  |  ✅  | 2023 | 2024-12-05 | 2024-12-24 | [Improving Pacing in Long-Form Story Planning](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  13  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [MoPS: Modular Story Premise Synthesis for Open-Ended Automatic Story Generation](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  14  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Returning to the Start: Generating Narratives with Related Endpoints](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  15  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Do Language Models Enjoy Their Own Stories? Prompting Large Language Models for Automatic Story Evaluation](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  16  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Reading Subtext: Evaluating Large Language Models on Short Story Summarization with Writers](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  17  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [CollabStory: Multi-LLM Collaborative Story Generation and Authorship Analysis](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  18  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Reflections & Resonance: Two-Agent Partnership for Advancing LLM-based Story Annotation](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  19  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [CMDAG: A Chinese Metaphor Dataset with Annotated Grounds as CoT for Boosting Metaphor Generation](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  20  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Analyzing Nobel Prize Literature with Large Language Models](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  21  |  ✅  | 2024 | 2024-12-05 | 2024-12-24 | [Evaluating Character Understanding of Large Language Models via Character Profiling from Fictional Works](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  22  |  ✅  | 2024 | 2024-12-11 | 2024-12-24 | [LongWriter-glm4-9b](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  23  |  ✅  | 2024 | 2024-12-11 | 2024-12-24 | [WHAT-IF: Exploring Branching Narratives by Meta-Prompting Large Language Models](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  24  |  ✅  | 2024 | 2024-12-19 | 2024-12-25 | [Show, Don't Tell: Uncovering Implicit Character Portrayal using LLMs](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  25  |  ✅  | 2024 | 2024-12-19 | 2024-12-25 | [LFED: A Literary Fiction Evaluation Dataset for Large Language Models](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  26  |  ✅  | 2024 | 2024-12-19 | 2024-12-25 | [Modeling Story Expectations to Understand Engagement: A Generative Framework Using LLMs](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  27  |  ✅  | 2024 | 2024-12-19 | 2024-12-25 | [Generating Long-form Story Using Dynamic Hierarchical Outlining with Memory-Enhancement](https://lyk0014.github.io/posts/Generate_story_overview/)  |
+|  28  |  ✅  | 2024 | 2024-12-19 | 2024-12-25 | [How good is my story? Towards quantitative metrics for evaluating LLM-generated XAI narratives](https://lyk0014.github.io/posts/Generate_story_overview/)   |
+|  29  |  ✅  | 2024 | 2024-12-24 | 2024-12-25 | [Dramatron](https://lyk0014.github.io/posts/Generate_story_overview/) |
+|  30  |  ✅  | 2024 | 2024-12-25 | 2024-12-25 | [Meta-Prompting: Enhancing Language Models with Task-Agnostic Scaffolding](https://lyk0014.github.io/posts/Generate_story_overview/) |
 
 {: .table-striped .table-hover}
 
@@ -151,7 +152,7 @@ description: 已读和待读Paper列表
 |  4  |  ✅  | 2023 | 2024-11-05 | 2024-11-28 | [GoT: Graph of Thoughts: Solving Elaborate Problems with Large Language Models](https://lyk0014.github.io/posts/2024_XoT/) |
 |  5  |  ✅  | 2023 | 2024-11-05 | 2024-11-28 | [XoT: Everything of Thoughts: Defying the Law of Penrose Triangle for Thought Generation](https://lyk0014.github.io/posts/2024_XoT/) |
 |  6  |  ✅  | 2024 | 2024-11-05 | 2024-11-28 | [DoT: On the Diagram of Thought](https://lyk0014.github.io/posts/2024_XoT/) |
-|  7  |  ⏳  | 2022 | 2024-12-05 | - | Constitutional AI: Harmlessness from AI Feedback |
+|  7  |  ��  | 2022 | 2024-12-05 | - | Constitutional AI: Harmlessness from AI Feedback |
 |  8  |  ⏳  | 2024 | 2024-12-05 | - | CUT YOUR LOSSES IN LARGE-VOCABULARY LANGUAGE MODELS |
 |  9  |  ⏳  | 2024 | 2024-12-05 | - | Chain-of-Thought Reasoning without Prompting |
 |  10  |  ⏳  | 2024 | 2024-12-05 | - | Evaluating the role of ‘Constitutions’ for learning from AI feedback |
@@ -214,13 +215,25 @@ description: 已读和待读Paper列表
 |  67  |  ⏳  | 2024 | 2024-12-20 | - | Offline Reinforcement Learning for LLM Multi-Step Reasoning |
 |  68  |  ⏳  | 2024 | 2024-12-20 | - | Multi-LLM Text Summarization |
 |  69  |  ⏳  | 2024 | 2024-12-20 | - | LLMs Lost in Translation: M-ALERT uncovers Cross-Linguistic Safety Gaps |
+|  70  |  ⏳  | 2024 | 2024-12-25 | - | RobustFT: Robust Supervised Fine-tuning for Large Language Models under Noisy Response |
+|  71  |  ⏳  | 2024 | 2024-12-25 | - | B-STaR: Monitoring and Balancing Exploration and Exploitation in Self-Taught Reasoners |
+|  72  |  ⏳  | 2024 | 2024-12-25 | - | OpenAI o1 System Card |
+|  73  |  ⏳  | 2024 | 2024-12-25 | - | Outcome-Refining Process Supervision for Code Generation |
+|  74  |  ⏳  | 2024 | 2024-12-25 | - | Revisiting In-Context Learning with Long Context Language Models |
+|  75  |  ⏳  | 2024 | 2024-12-25 | - | LearnLM: Improving Gemini for Learning|
+|  76  |  ⏳  | 2024 | 2024-12-25 | - | DRT-o1: Optimized Deep Reasoning Translation via Long Chain-of-Thought |
+|  77  |  ⏳  | 2024 | 2024-12-25 | - | ResearchTown: Simulator of Human Research Community |
+|  78  |  ⏳  | 2024 | 2024-12-25 | - | NILE: Internal Consistency Alignment in Large Language Models |
+|  79  |  ⏳  | 2024 | 2024-12-25 | - | OpenRFT: Adapting Reasoning Foundation Model for Domain-specific Tasks with Reinforcement Fine-Tuning |
+|  80  |  ⏳  | 2024 | 2024-12-25 | - | Friends-MMC: A Dataset for Multi-modal Multi-party Conversation Understanding |
+|  81  |  ⏳  | 2024 | 2024-12-25 | - | 
 {: .table-striped .table-hover}
 
 ## LLM - RAG
 
 > 计划实现目标
-> - 1. 实��知识库问答
-> - 2. 实现可联网+知识库的问答 - Perplexity
+> - 1. 实现知识库问答
+> - 2. 实现可联网+��识库的问答 - Perplexity
 > - 3. 可使用Claude的MCP模式构建问答
 
 📊 **统计**
