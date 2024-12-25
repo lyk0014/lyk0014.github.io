@@ -16,9 +16,9 @@ status: todo  # todo, draft, completed, published
 - WHAT-IF: 探索分支叙事，互动小说
 - SWAG: 故事情节搜索
 - RECURRENTGPT: 递归生成长文本
-- Weaver: 内容风格
+- Weaver: 写作专属模型，
 - Suspenseful Stories: 悬疑故事
-- 
+- LongWriter: 长故事生成, 训练GLM-9B
 
 ## LongStory 
 > 论文：[LongStory: Coherent, Complete and Length Controlled Long story Generation](https://arxiv.org/abs/2311.15208)    
