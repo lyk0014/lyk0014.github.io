@@ -1,24 +1,42 @@
 ---
 title: A comprehensive review of research papers in the field of novel generation. - 202412
 author: LYK
-date: 2024-12-09 00:00:00 +0800
+date: 2024-12-25 00:00:00 +0800
 categories: [Reading, Paper]
 tags: [Novel Generation, Novel, LLM, Story]
 pin: true
 published: true
 description: 粗读，汇总目前收集到的关于Novel Generation的论文【截止202412】
-media_subpath: '/posts/20241210'
-status: todo  # todo, draft, completed, published
 ---
 
 ## Summary - Papers Worth a Deep Read
+共31篇论文，从中筛选13篇值得精读的论文。
+
+### Outline Generation
+
+
+### Plot Generation
 - MoPS: 结构故事设定，创造情节
-- WHAT-IF: 探索分支叙事，互动小说
 - SWAG: 故事情节搜索
+- WHAT-IF: 探索分支叙事，互动小说，元提示
+
+### Training
+- LongWriter: 长故事生成, 训练GLM-9B
+- Weaver: 写作专属模型
+
+
+
+
 - RECURRENTGPT: 递归生成长文本
 - Weaver: 写作专属模型，
 - Suspenseful Stories: 悬疑故事
-- LongWriter: 长故事生成, 训练GLM-9B
+
+- DOME: 长故事生成，叙事框架结合知识图谱
+- Improving Pacing: 改进节奏
+- Reflections & Resonance: 多Agent，反思与共鸣
+- Dramatron: 分层故事生成, 人工介入
+- Meta-Prompt: 元提示, Fresh-eye(子任务只能看到有限提示)
+- DOC：详细大纲控制
 
 ## LongStory 
 > 论文：[LongStory: Coherent, Complete and Length Controlled Long story Generation](https://arxiv.org/abs/2311.15208)    
@@ -151,7 +169,7 @@ Regressor: OPT-1.3B
 
 **假设**
 将故事讲述结构化为一个搜索问题。
-即，在给定故事创意的条件下，在可能的故事的搜索空间中找到“最优路径”。
+即，在给定故事创意的条件下，在可能的故事的搜索空间中找到"最优路径"。
 构建两个模型，反馈循环：
 - 故事内容模型：根据选定的Action，生成故事
 - 下一步最佳Action：辅助LLM，确定在故事的当前状态下下一个最佳Action
@@ -163,8 +181,8 @@ Regressor: OPT-1.3B
 
 训练流程：
 1. 收集偏好数据：收集故事动作的偏好数据，学习如何选择故事下一部分的最佳动作。
-- 使用GPT-4生成数据：在给定“故事状态”的情况下选择下一个最佳动作
-- 定义故事状态为X = (P, S, A)，其中P是故事提示，S是故事提示的当前延续，A是为发展故事下一部分而采取的下一个“动作”。
+- 使用GPT-4生成数据：在给定"故事状态"的情况下选择下一个最佳动作
+- 定义故事状态为X = (P, S, A)，其中P是故事提示，S是故事提示的当前延续，A是为发展故事下一部分而采取的下一个"动作"。
 - 20K 长故事：使用LLaMA2-7B、Mixtral-8x7B，使用Prompt生成多样化样本
 - 32K context：微调Mistral-7B, 以支持长上下文
 - 25K 偏好数据：DPO训练偏好模型
@@ -209,6 +227,21 @@ c. 更新故事状态X(i)，加入新的动作（A(i)），形成新的故事状
 经过k次迭代后，输出最终的故事S(k)。
 通过这个迭代的反馈循环，SWAG方法能够结合两个模型的优势，生成既连贯又引人入胜的长篇故事。这个过程可以灵活地使用不同的LLMs，无论是开源还是闭源，以适应不同的内容生成需求。
 
+
+**Action Space**
+Our action space consists of the following 30 phrases:
+"add suspense", "add action", "add comedy", "add tragedy", "add romance",
+"add mystery", "add conflict", "add character development", "add plot twist",
+"add dialogue", 'add fantasy elements", "add historical context", "add science
+fiction elements", "add horror", "add magical realism", "add philosophical
+themes", "add satire", "add foreshadowing", "add a flashback", "add a dream
+sequence", "add symbolism", "add irony", "add allegory", "add a cliffhanger",
+"add a moral dilemma", "add a subplot", "add an antagonist", "add setting
+details", "add cultural references", and "add humor".
+These actions are generated via prompting GPT-4, 
+with the goal of obtaining more abstract actions forstory guidance.  
+Future work may focus on more fine-grained action generation.
+
 ```
 ![SWAG_training.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1734956808988_SWAG_training.jpg)
 
@@ -222,7 +255,7 @@ c. 更新故事状态X(i)，加入新的动作（A(i)），形成新的故事状
 ```
 **问题**  
 内容风格过于平淡
-文风过于“GPT”
+文风过于"GPT"
 预训练文本通常为WEB- data（高质量内容占比不到0.1%），在建模了这些数据分布后，通常倾向输出普通的内容。这个问题通过RLHF无法解决，只能缓解，矮子里面拔将军。
 
 **假设** 
@@ -234,10 +267,10 @@ c. 更新故事状态X(i)，加入新的动作（A(i)），形成新的故事状
 从开源预训练数据中，筛选高质量小说、短故事、创意文案等，以及私有小说、短文数据；
 2. **SFT数据-100K**
 参考Meta的**LongForm**和**HumpBack**方案，构建基于一段高质量内容，自动生成高质量输出的Pipeline。包括以下Instruction：写内容、写大纲、扩写、润色、精简、风格迁移（仿写）、审校、头脑风暴、起标题、写作相关对话。
-"""标注 Prompt 中首先解释任务的定义和几个输入输出样例，之后给出一个从一段文本中自动挖掘润色任务指令 / 输入 / 输出的例子和标注的思考过程: “首先在文本中找到一段写的很好的句子，假设这句话是经过一次润色而来的，之后猜测在润色之前这句话会是什么样子，最后分析润色前后的变化，推理出润色的指令会是什么样子。” 之后标注的 Prompt 中输入需要标注的例子并指示大模型按照例子中的标注流程进行输出，最后 parse 出模型输出中标注的 “指令 / 输入 / 输出” 部分，组合成一条写作指令数据。"""
+"""标注 Prompt 中首先解释任务的定义和几个输入输出样例，之后给出一个从一段文本中自动挖掘润色任务指令 / 输入 / 输出的例子和标注的思考过程: "首先在文本中找到一段写的很好的句子，假设这句话是经过一次润色而来的，之后猜测在润色之前这句话会是什么样子，最后分析润色前后的变化，推理出润色的指令会是什么样子。" 之后标注的 Prompt 中输入需要标注的例子并指示大模型按照例子中的标注流程进行输出，最后 parse 出模型输出中标注的 "指令 / 输入 / 输出" 部分，组合成一条写作指令数据。"""
 3. **DPO数据**
 使用**Constitutional DPO**技术，基于原则高效将模型和专业作者对齐的方案。
-"""Constitutional DPO 以人类创作者创作的高质量的输出作为正样本，利用人类作家 / 编辑整理提炼出的各个领域写作的 “原则 (Principles)”，用这些原则去生成能够教会模型更好地遵守这些原则的负样本。具体来说，专业作家 / 编辑首先整理出四大领域十个任务中，好的内容需要遵循的共 200 余条原则。对于每一个原则，编辑总结出原则的详细解释和一对符合 / 违背该原则的例子，并用几句话解释出符合 / 违背原则的原因。之后，对于每一个正样本，负例生成的 prompt 中首先展示出领域 - 任务上的原则集合和原则对应的例子和解释，之后展示出正样本，要求大模型分析出正样本最符合哪几条原则，并推理出如何修改能够在作出较少改变的情况下让正样本转而违背这个原则，从而变成一条质量没那么好的输出。团队精选了各个领域高评分 / 高阅读量 / 高点赞评论数的内容作为正样本，通过 Consitutional DPO 的流水线生成出了数万条偏好数据 (preference data)，并利用这些数据对模型利用 DPO 进行了对齐训练。"""
+"""Constitutional DPO 以人类创作者创作的高质量的输出作为正样本，利用人类作家 / 编辑整理提炼出的各个领域写作的 "原则 (Principles)"，用这些原则去生成能够教会模型更好地遵守这些原则的负样本。具体来说，专业作家 / 编辑首先整理出四大领域十个任务中，好的内容需要遵循的共 200 余条原则。对于每一个原则，编辑总结出原则的详细解释和一对符合 / 违背该原则的例子，并用几句话解释出符合 / 违背原则的原因。之后，对于每一个正样本，负例生成的 prompt 中首先展示出领域 - 任务上的原则集合和原则对应的例子和解释，之后展示出正样本，要求大模型分析出正样本最符合哪几条原则，并推理出如何修改能够在作出较少改变的情况下让正样本转而违背这个原则，从而变成一条质量没那么好的输出。团队精选了各个领域高评分 / 高阅读量 / 高点赞评论数的内容作为正样本，通过 Consitutional DPO 的流水线生成出了数万条偏好数据 (preference data)，并利用这些数据对模型利用 DPO 进行了对齐训练。"""
 4. **RAG & Function Calling 数据**
 检索增强生成（RAG）和函数调用策划指令数据，使Weaver能够利用外部知识和工具
 
@@ -270,7 +303,7 @@ RecurrentGPT定义了一个Prompt模板，模板分为三个部分（参见图1�
 **输入（Input）**：用来在每一轮对话中向LLM输入一些写作所需要的信息。
 - **Input Paragraph**：它是上一轮对话中LLM输出Output部分中的正文内容，即Output Paragraph。
 简单来说，Input Paragraph的作用就是告诉LLM它上一轮写的是什么。
-- **Short-term Memory**: 包含之前写过所有内容中的一些关键信息的总结; “关键信息”是指对接下来写作有帮助的信息。
+- **Short-term Memory**: 包含之前写过所有内容中的一些关键信息的总结; "关键信息"是指对接下来写作有帮助的信息。
 - **Long-term Memory**: 这里面包含的是与接下来写作有关的曾经写过的正文内容。
 """因为Long-term Memory的作用是为LLM提供与接下来写作有关的曾经写过的正文内容，而Short-term Memory中包含的又是与接下来写作有关的关键信息。
 所以一种自然的做法是，利用Short-term Memory的每个句子，去VDB中寻找K个与之最相关的句子来作为Long-term Memory的内容。"""
@@ -278,7 +311,7 @@ RecurrentGPT定义了一个Prompt模板，模板分为三个部分（参见图1�
 **输出（Output）**：每一轮对话中LLM输出的内容。
 - **Output Paragraph**：它是LLM在下一轮对话中输出的正文内容。
 - **Output Memory**: 在Input中的Short-term Memory主要用来保存之前写过所有内容中的一些关键信息的总结。
-这些“关键信息”是指对接下来写作有帮助的信息。而Output Memory可以理解为是对Short-term Memory的更新。
+这些"关键信息"是指对接下来写作有帮助的信息。而Output Memory可以理解为是对Short-term Memory的更新。
 Output Memory的内容会直接作为下一轮对话的Short-term Memory来使用。
 - **Output Instruction**：我们让LLM在写完正文后，会让它同时生成一个Instruction用来说明接下来的内容大纲。
 Output Instruction就是下一次Input中的Input Instruction。
@@ -371,13 +404,13 @@ LLM驱动NPC：允许剧情从角色与环境的互动中自然产生；但是�
 
 **假设**
 **一种新颖的剧情创建工作流程**
-通过一种新颖的作者结构称为“抽象行为”和基于LLM的叙事规划过程，协调作者的创作意图和LLM驱动的角色模拟的紧急行为。
+通过一种新颖的作者结构称为"抽象行为"和基于LLM的叙事规划过程，协调作者的创作意图和LLM驱动的角色模拟的紧急行为。
 作者定义高级剧情大纲，这些大纲后来通过基于游戏世界状态的LLM基础叙事规划过程转化为具体的角色行动序列。
-该过程创建了“活生生的故事”，这些故事能够动态适应各种游戏世界状态，从而实现作者、角色模拟和玩家共同创造的叙事。
+该过程创建了"活生生的故事"，这些故事能够动态适应各种游戏世界状态，从而实现作者、角色模拟和玩家共同创造的叙事。
 
 **整体流程** 
 StoryVerse，一个使用基于LLM的叙事规划和角色模拟来生成动态故事的系统。
-1. 作者不是直接指定角色的行动来干预角色模拟，而是定义高级剧情大纲作为抽象行为，这些行为后来通过Act Director组件“实例化”为具体行为。
+1. 作者不是直接指定角色的行动来干预角色模拟，而是定义高级剧情大纲作为抽象行为，这些行为后来通过Act Director组件"实例化"为具体行为。
 2. 在实例化一个抽象行为时，Act Director考虑到游戏世界的状态、之前的行动和由正在进行的LLM驱动的角色模拟器组件产生的角色行动。
 3. 产生的具体行动包含一系列角色行动，可以在游戏环境中执行以更新世界状态，从而通知后续的角色模拟和后续的行动。
 
@@ -388,7 +421,7 @@ StoryVerse，一个使用基于LLM的叙事规划和角色模拟来生成动态�
 **工作流程**
 
 1. 整合组件：系统包括三个主要部分：Act Director、角色模拟器和游戏环境。
-2. 作者输入：作者提供高级剧情大纲，称为“抽象行为”。
+2. 作者输入：作者提供高级剧情大纲，称为"抽象行为"。
 3. 实例化行为：Act Director根据游戏世界状态将抽象行为实例化为具体角色行动。
 4. 角色行动生成：如果作者没有输入，角色模拟器默认生成角色行动。
 5. 游戏环境执行：游戏环境执行角色行动并更新世界状态。
@@ -440,7 +473,7 @@ StoryVerse，一个使用基于LLM的叙事规划和角色模拟来生成动态�
 
 挑战：
 1. 一个角色可能有不同的身份或别名，这些身份可能在故事的不同点出现。
-2. LLMs 在基于现有信息进行基本推断时存在困难，这种现象被称为“反转诅咒”。
+2. LLMs 在基于现有信息进行基本推断时存在困难，这种现象被称为"反转诅咒"。
 例如，当我们知道 A 是 B 的父亲时，根据这些模型，并不一定意味着 B 就是 A 的孩子；涉及从多个角色的视角进行推断，这些视角有时会产生冲突或不一致的信息。
 
 
@@ -528,7 +561,7 @@ StoryVerse，一个使用基于LLM的叙事规划和角色模拟来生成动态�
 ```
 **问题**  
 LLM在生成长篇故事或大纲时，常常遇到不自然的Pacing问题，无论是忽略重要事件还是过度渲染无关紧要的细节，都会给读者带来突兀的体验。
-例如：一些过于详细的章节感觉像是“艰难的跋涉”，而在其他情况下，GPT-4会“用总结的方式快速掠过重大的重要时刻”
+例如：一些过于详细的章节感觉像是"艰难的跋涉"，而在其他情况下，GPT-4会"用总结的方式快速掠过重大的重要时刻"
 
 **相关工作**
 1. **DOC**：将大纲转化为完整的故事，并且可以动态变化段落长度
@@ -660,7 +693,7 @@ MoPS 的有效性主要来自于其模块化设计，体现了组合创造力的
 
 ```
 **问题**  
-人类作家通常会在文章开头和结尾使用相关的句子来构成一个令人满意的叙事，以“闭合循环”的方式来完成。
+人类作家通常会在文章开头和结尾使用相关的句子来构成一个令人满意的叙事，以"闭合循环"的方式来完成。
 
 **假设**
 RENarGen，一种可控的故事生成范式。
@@ -757,7 +790,7 @@ LLMs之间合作进行开放式任务是否可行？达到什么程度？
 - 熵
 - 连贯性分数
 2. 故事连贯性评估
-使用GPT-4o进行基于提示的评估：评估由不同LLM作者顺序生成的故事部分是否逻辑上和情节上连贯。通过比较“正确”的下一个故事部分（即实际的下一部分）与“不正确”的负样本（即随机选择的故事部分，可能是来自同一故事的其他部分，或来自不同故事的部分）的连贯性评价，来确定故事的连贯性。
+使用GPT-4o进行基于提示的评估：评估由不同LLM作者顺序生成的故事部分是否逻辑上和情节上连贯。通过比较"正确"的下一个故事部分（即实际的下一部分）与"不正确"的负样本（即随机选择的故事部分，可能是来自同一故事的其他部分，或来自不同故事的部分）的连贯性评价，来确定故事的连贯性。
 3. 作者任务相关的评估
 扩展PAN任务：将PAN任务中常见的作者相关任务（如抄袭分析、作者识别和近重复检测）扩展到多LLM场景，并使用以下五种基线方法进行微调和性能报告：
 - 多项式朴素贝叶斯（MNB）
@@ -811,7 +844,7 @@ LLMs之间合作进行开放式任务是否可行？达到什么程度？
 ![CMDAG_example.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1735044887182_CMDAG_example.jpg)
 
 
-## SWAG
+## Analyzing Nobel Prize Literature
 > 论文：[Analyzing Nobel Prize Literature with Large Language Models](https://arxiv.org/pdf/2410.18142)    
 > 2024.10  
 > 
@@ -849,21 +882,6 @@ LLMs之间合作进行开放式任务是否可行？达到什么程度？
 探索叙事风格、节奏、使用时间以及任何视角的转变，这些影响读者的体验。
 - 情感基调和心理深度（Emotional Tone and Psychological Depth）：
 调查文本的情感氛围，特别是它如何通过角色的描绘传达心理复杂性。
-
-
-**Action Space**
-Our action space consists of the following 30 phrases:
-"add suspense", "add action", "add comedy", "add tragedy", "add romance",
-"add mystery", "add conflict", "add character development", "add plot twist",
-"add dialogue", ’add fantasy elements", "add historical context", "add science
-fiction elements", "add horror", "add magical realism", "add philosophical
-themes", "add satire", "add foreshadowing", "add a flashback", "add a dream
-sequence", "add symbolism", "add irony", "add allegory", "add a cliffhanger",
-"add a moral dilemma", "add a subplot", "add an antagonist", "add setting
-details", "add cultural references", and "add humor".
-These actions are generated via prompting GPT-4, 
-with the goal of obtaining more abstract actions forstory guidance.  
-Future work may focus on more fine-grained action generation.
 
 ```
 
@@ -963,7 +981,7 @@ Sampling: 得分最高的输出作为正样本，剩余三个输出中随机选�
 
 ```
 **背景**  
-互动小说(IF)是一种基于文本的故事形式，用户执行某些动作来推动情节发展。从“选择你自己的冒险”书籍到开放世界视频游戏，分支叙事是互动小说中一个有趣的元素，它使读者能够改变叙事的结果。
+互动小说(IF)是一种基于文本的故事形式，用户执行某些动作来推动情节发展。从"选择你自己的冒险"书籍到开放世界视频游戏，分支叙事是互动小说中一个有趣的元素，它使读者能够改变叙事的结果。
 
 **假设**  
 从人类编写的情节开始，
@@ -996,7 +1014,7 @@ GPT-4倾向于想象出要么与原始故事偏离太多，要么陷入具体细
 因此，我们提示GPT-4从情节线的所有边事件中识别出对应这三个主要情节点的三个关键事件，并将其保存以备后续在提示生成中使用。
 
 3. 生成元提示
-尽管理想的故事应该展示而不是告诉，我们观察到LLM倾向于过于直接地遵循指令。例如，“替代故事情节应该包含新挑战...”的提示会导致事件如“Tony面临一个新的挑战...”。
+尽管理想的故事应该展示而不是告诉，我们观察到LLM倾向于过于直接地遵循指令。例如，"替代故事情节应该包含新挑战..."的提示会导致事件如"Tony面临一个新的挑战..."。
 
 因此，我们采用了元提示方法（即提示生成提示），这已被证明是一种有效的方法，可以从LLMs中引出更好的响应。
 
@@ -1038,9 +1056,9 @@ GPT-4倾向于想象出要么与原始故事偏离太多，要么陷入具体细
 > 论文：[Show, Don't Tell: Uncovering Implicit Character Portrayal using LLMs](https://arxiv.org/abs/2412.04576)    
 > 2024.12  
 > [编剧界最著名的格言一共有三句：](https://www.zhihu.com/question/61166119)  
-> “write what you know” ——写你了解的东西。  
-> “writing is rewriting”——写作就是不断重写的过程。 
-> “show, don’t tell.”——展示，而不是告诉。  
+> "write what you know" ——写你了解的东西。    
+> "writing is rewriting"——写作就是不断重写的过程。   
+> "show, don't tell."——展示，而不是告诉。    
 
 ```
 **问题**  
@@ -1167,152 +1185,373 @@ ImPortPrompts数据集是专门为隐含人物特征分析任务设计的数据�
 ```
 
 
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
+## Modeling Story Expectations
+> 论文：[Modeling Story Expectations to Understand Engagement: A Generative Framework Using LLMs](hhttps://arxiv.org/abs/2412.15239v1)    
+> 2024.12    
+> 在Wattpad上超过30,000本书章节上进行评估  
+>
 
 ```
 **问题**  
+理解参与的潜在驱动因素可以帮助内容创作者决定生产什么。
 
-
-**方法** 
-
-
-**效果**
-
+**结论** 
+一个使用大型语言模型来模拟故事中观众期望的框架。
+我们的方法将叙事内容转化为代表观众期望、不确定性和惊喜的特征，为理解用户参与提供了见解。
+我们的核心方法论是一个将叙事内容转化为特征的过程，这些特征代表了观众的期望、不确定性和惊喜。
+为了证明其有效性，我们将我们的方法应用于Wattpad上的超过30,000本书章节。
 
 ```
 
 
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
+## Dynamic Hierarchical Outlining
+> 论文：[Generating Long-form Story Using Dynamic Hierarchical Outlining with Memory-Enhancement](https://arxiv.org/abs/2412.13575)    
+> 2024.12  
+> **DOME**：**D**ynamic Hierarchical **O**utlining with **M**emory-**E**nhancement long-form story generation 
+
+```
+**问题定义**
+1. 对于作家给定的StoryPremise(I), 以及写作理论框架WriteTheory(WT)  
+2. 我们设计了一个Framework(F*)来生成a long-form story(S)
+3. 故事S在情节连贯性上的得分是C^Plot，故事S在上下文连贯性上的得分是C^Context。
+4. 我们的目标是生成一个故事S，以提高C^Plot和C^Context。
+
+
+**问题**  
+现有的长篇故事生成方法基于计划-写作框架分离了规划和写作阶段，这使得它们无法适应写作阶段的不确定性。
+此外，通过这种两阶段方法生成的故事往往在开始时就突然停止，导致情节缺失。
+另一种方法包括人类参与的详细大纲偏好，提高了大纲的灵活性，但使得整体故事线无法控制或不完整。一个直观的想法出现了：如果我们能进一步从情节流畅性和完整性方面提高故事连贯性，会怎样？
+
+
+**Motivation**
+我们基于Yang等人（2023）提出的分层大纲概念，结合小说写作理论和知识图谱（Pan等人，2024），设计了一个动态大纲生成系统。
+1. 系统首先生成粗略大纲，确保包含所有故事阶段，然后逐步扩展为详细大纲，以适应生成不确定性。
+2. 为解决上下文不一致性问题，我们引入了记忆模块和LLM过滤器，提供简洁的相关内容，提高上下文一致性。
+
+
+**方法**
+1. DHO - 动态分层规划
+- 分为粗略大纲(Rough Outline)和详细大纲(Detailed Outline)两个层次
+- 粗略大纲基于小说写作理论(Campbell的五阶段理论)生成,确保故事情节完整性
+- 详细大纲根据粗略大纲和MEM提供的相关内容动态生成,每个粗略大纲会扩展生成3个详细大纲
+- 故事内容基于详细大纲和MEM提供的相关历史内容生成
+2. MEM - 基于时序知识图谱的记忆增强模块
+- 使用时序知识图谱(TKG)存储生成的故事内容
+- TKG以四元组形式<主语,动作,宾语,索引>存储信息
+- 通过基于实体的检索和LLM语义过滤提供相关历史内容
+- 过滤规则基于语义相关性,返回top-k个最相关内容
+3. 时间冲突分析器
+- 一种基于时间知识图谱信息表示规则的潜在冲突检测方法，
+- 并应用LLM进一步确定是否存在冲突
+- 实验表明，这种方法的判断结果与人类偏好一致。
+
+**流程**
+1. 生成粗略大纲(Rough Outline)
+    - 输入包括：用户输入I(包含故事设定、人物介绍等)、小说写作理论WT(Campbell的五阶段理论)、粗略大纲生成提示词Prough_outline
+    - 使用公式：R = LLM(WT, I, Prough_outline)
+    - 目的是确保故事包含完整的五个阶段(开端、上升、高潮、下降、结局)
+2. 生成详细大纲(Detailed Outline)
+    - 详细大纲D = {di}5i=1，对应五个阶段
+    - 每个阶段的详细大纲基于:
+        - 对应的粗略大纲部分ri
+        - MEM模块提供的相关历史内容RInfo.i
+        - 详细大纲生成提示词Pdetailed_outline
+    - 使用公式：di = LLM(ri, RInfo.i, Pdetailed_outline)
+    - 每个粗略大纲ri会扩展生成M个详细大纲(文中M=3)
+3. 基于详细大纲生成故事内容
+    - 对每个详细大纲doti：
+        - 从MEM获取相关历史内容DInfo.ti
+        - 使用公式：sti = LLM(doti, DInfo.ti, Pgen_story)生成部分故事内容
+        - 将生成的内容存入MEM的时序知识图谱中
+4. DOME还提出了一个时序冲突分析器,用于自动评估故事的上下文一致性:
+    - 基于TKG中的四元组检测潜在冲突
+    - 使用LLM进一步判断是否存在实际冲突
+    - 通过计算冲突四元组占比来衡量一致性
+
+```
+![DOME_illustration_long_form_story_gen.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1735201837842_DOME_illustration_long_form_story_gen.jpg)
+![DOME_general_diagram.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1735201834041_DOME_general_diagram.jpg)
+
+## How good is my story?
+> 论文：[How good is my story? Towards quantitative metrics for evaluating LLM-generated XAI narratives](https://arxiv.org/pdf/2412.10220)    
+> 2024.12  
+> 关于描将定量解释（如SHAP）转换为用户友好的叙述，跟小说无关  
 > 
+
+
+
+
+## Dramatron
+> 论文：[Co-Writing Screenplays and Theatre Scripts with Language Models: Evaluation by Industry Professionals](https://dl.acm.org/doi/10.1145/3544548.3581225)    
+> 2022.04  
+> Dramatron 是一个所谓的「联合写作」工具  
+> 你给它一句话（log line）描述中心戏剧冲突（比如 James 在有 Sam 鬼魂出没的后院发现了一口井），
+> 它就能自动写出标题、角色、场景描述和对话。
 
 ```
 **问题**  
+LLM是否可以创作剧本？
+
+**什么是Dramatron?**
+
+BaseModel：LLM，such as GPT-4, Claude, Gemini, etc.
+Major Method:
+- 分层故事生成（ hierarchical story generation）
+- 精心设计的 prompt
+- 具有结构化生成能力的 prompt chaining
+Advantage:
+- 整个脚本的长程一致性
+- 比「扁平的」序列文本生成更具有故事连贯性
+
+**Dramatron 工作流程**
+
+1. **输入阶段**
+   - 用户提供一句话的核心戏剧冲突描述（log line）
+   - 这个 log line 作为整个生成过程的种子输入
+
+2. **分层生成阶段**（按顺序）
+按层次生成内容：从故事梗概→标题→人物→情节大纲→场景描述→对话
+   - 标题（Title）生成
+   - 角色（Characters）生成
+     * 角色描述列表
+     * 每个角色的详细特征
+   - 情节（Plot）生成
+     * 场景序列摘要
+     * 每个场景的设置和节奏
+   - 位置（Location）生成
+     * 每个场景的具体位置描述
+   - 对话（Dialogue）生成
+     * 基于前述所有元素
+     * 为每个场景生成具体对话内容
+
+3. **交互特性**
+   - 用户可在任何生成阶段进行干预
+   - 支持人机协作编剧
+   - 保持整体剧本的长程一致性
+
+4. **技术特点**
+   - 适用于任何支持 prompt 输入的 LLM
+   - 使用 prompt chaining 技术
+   - 采用分层结构确保故事连贯性
+
+**叙事结构1 - 弗赖塔格金字塔结构（Freytag's Pyramid）**
+
+1. 开端/引子(Exposition)
+- 介绍背景、人物和基本设定
+- 建立故事的基调和氛围
+2. 引发事件(Inciting Incident)
+- 打破平衡的关键事件
+- 推动主角进入故事主线
+3. 上升动作(Rising Action)
+- 由一系列递进的事件组成:
+  - 冲突(Conflict)
+  - 复杂化(Complication)
+  - 困境(Dilemma)
+- 情节张力逐步升级
+- 推动故事向高潮发展
+4. 高潮(Climax)
+- 故事的转折点
+- 冲突达到最高点
+- 主角面临最大挑战
+5. 下降动作(Falling Action)
+- 高潮后的余波
+- 解开各种悬念
+- 情节逐渐平缓
+6. 结局(Resolution/Denouement)
+- 所有冲突得到解决
+- 故事达到新的平衡
+- 给读者一个完整的交代
+这个结构提供了一个清晰的叙事框架，帮助作者构建张力递进、高潮明确的故事。它特别适用于戏剧性较强的作品，如小说、电影和戏剧等。
+
+**叙事结构2 - 英雄之旅**
+英雄之旅的主要阶段
+1. 平凡世界 (Ordinary World)
+- 展示英雄的日常生活
+- 建立对比以凸显后续冒险的非凡性
+2. 冒险召唤 (Call to Adventure)
+- 打破平衡的事件
+- 英雄面临选择或挑战
+3. 拒绝召唤 (Refusal of the Call)
+- 英雄最初的犹豫或抗拒
+- 突显任务的艰巨性
+4. 遇见导师 (Meeting with the Mentor)
+- 获得指引和帮助
+- 获得必要的工具或建议
+5. 跨越第一道门槛 (Crossing the First Threshold)
+- 正式踏上冒险之路
+- 离开熟悉的环境
+6. 考验、盟友与敌人 (Tests, Allies and Enemies)
+- 经历各种挑战
+- 结识朋友和对手
+- 学习新的技能
+7. 接近最深洞穴 (Approach to the Inmost Cave)
+- 准备面对最大挑战
+- 到达危险的核心地带
+8. 严峻考验 (Ordeal)
+- 面对最大的危机
+- 经历象征性的死亡与重生
+9. 获得奖励 (Reward)
+- 战胜考验后的收获
+- 获得特殊物品或能力
+10. 归途 (Road Back)
+- 开始返回之旅
+- 面对归途中的挑战
+11. 复活 (Resurrection)
+- 最后的考验
+- 完成最终蜕变
+12. 带着灵药回归 (Return with the Elixir)
+- 回到原点
+- 带来改变或救赎
+- 分享冒险的成果
+特点与应用
+- 循环结构：故事最终回到起点，但主角已经发生改变
+- 普遍性：适用于各种文化背景的故事
+- 灵活性：不必严格遵循所有步骤，可以根据需要调整
+- 深层意义：反映人类共同的心理成长历程
+
+这个框架被广泛应用于电影、小说、游戏等叙事作品中，因为它反映了人类普遍的成长和蜕变过程。
 
 
-**方法** 
+**核心Prompt模版**
+Dramatron共使用了5类核心Prompt模板，每个都有特定的功能：
 
+1. Title Prompt（标题提示）
+- 输入：log line（故事梗概）
+- 输出：故事标题
+- 包含示例：如《美狄亚》、《星球大战》等
+- 格式要求：简洁且具描述性的标题
 
-**效果**
+2. Character Description Prompt（角色描述提示）
+- 输入：log line
+- 输出：角色列表及其描述
+- 格式：<character>名字<description>描述<stop>
+- 包含主要角色特征、关系和动机
 
+3. Plot Outline Prompt（情节大纲提示）
+- 输入：log line + 角色描述
+- 输出：场景序列
+- 每个场景包含：
+  - 地点(Place)
+  - 情节元素(Plot element)
+  - 情节概要(Beat)
+- 遵循特定叙事结构（弗莱塔格金字塔或英雄旅程）
+
+4. Location Description Prompt（场景描述提示）
+- 输入：log line + 地点名称
+- 输出：详细的场景描述
+- 目的：为对话提供环境背景
+
+5. Scene Dialogue Prompt（对话提示）
+- 输入：多个元素组合
+- log line
+- 情节元素
+- 当前场景概要(Beat)
+- 上一场景概要(Previous_Beat)
+- 地点名称和描述
+- 相关角色描述
+- 输出：场景对话
+- 格式：标准剧本对话格式
+
+Prompt特点：
+- 每个Prompt都有few-shot示例
+- 使用特定标记(<end>, <stop>等)
+- 支持prompt chaining
+- 可根据不同叙事结构选择不同prompt set
 
 ```
+![Dramatron_Hierarchical_Coherent_Story_Generation.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1735184295976_Dramatron_Hierarchical_Coherent_Story_Generation.jpg)
+![Dramatron_Prompt.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1735184300549_Dramatron_Prompt.jpg)
 
 
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
+## Meta-Prompting
+> 论文：[Meta-Prompting: Enhancing Language Models with Task-Agnostic Scaffolding](https://arxiv.org/pdf/2401.12954)    
+> 2024.01  
+> Fresh eyes
+> 增加Python解释器
 
 ```
 **问题**  
+尽管这些模型可以解决多种多样的问题，但它们并非总是正确的，有时候也会生成不准确、误导性或矛盾的响应结果。
+
+这些模型的运行成本越来越低，
+人们自然会问：
+- 是否可以使用脚手架系统（scaffolding system）并使用多个语言模型查询来提升这些模型输出的准确度和稳健性。
 
 
 **方法** 
+论文提出了一种称为meta-prompting的技术，这是一种利用模型自身能力的分解和整合技术。
+具体步骤包括：
+1. 任务分解：主模型将复杂任务分解为更小、更易处理的子任务。
+2. 专家分配：每个子任务都交给"专家"模型处理，所谓的"专家"模型是指通过特定指令定制的同一个模型的不同版本。
+3. 结果整合：主模型（担任指挥者的角色）将这些"专家"模型的输出结果整合，确保最终结果的一致性和准确性。
+4. 结果验证：模型还会进行批判性思考和验证过程，以优化和验证最终输出。
+
+**思想**
+- 这种方法能让单个黑箱语言模型既有效作为中心指挥员，同时又充当一系列不同专家，这样便可以得到更加准确、可靠和连贯一致的响应。
+- meta-prompting 技术组合并扩展了近期研究提出的多种不同的 prompting 思想，包括高层级规划和决策、动态人设分配、多智能体辩论、自我调试和自我反思。
+- 不受具体任务影响
 
 
-**效果**
+这种 prompting 结构类似于管弦乐队，其中指挥家的角色就由元模型充当，每位音乐演奏者都对应一个不同的特定领域的模型。正如指挥家可以让多种乐器协调弹奏出和谐的旋律一样，元模型也可以将多个模型的解答和见解组合起来，为复杂的问题或任务给出准确且全面的解答。
 
+**Meta-Prompting 与多人设Prompting的差异**
+Fresh Eyes 是 meta-prompting 与多人设 prompting 的一大关键差异。
 
-```
+Fresh Eyes 也就是用另一双眼睛看，这有助于缓解语言模型的一个众所周知的问题：犯错时会一路错到底并且会表现出过度自信。
 
+Fresh eyes（新鲜的视角）是Meta-prompting的一个重要特征，具体含义如下：
 
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
+**基本概念**
+每个专家模型在被调用时，只能看到Meta Model提供给它的特定信息
+不能看到之前其他专家的完整对话历史
+这就像一个全新的视角来看待问题
 
-```
-**问题**  
+**主要优势**
+- 避免锚定偏见：不会被之前的解决方案所限制
+- 减少确认偏误：不会简单确认之前的答案
+- 防止过度自信：可以发现之前被忽视的错误
+- 提供创新思路：带来全新的问题解决角度
 
+**实际应用举例**
+论文提供了一个24点游戏的例子来说明Fresh eyes的作用：
+- Meta Model先咨询数学专家提供解决方案
+- 第二个专家检查并发现错误
+- Meta Model请求编程专家编写验证程序
+- 另一个编程专家发现并修正代码错误
+- 最后由数学专家验证最终答案
 
-**方法** 
+**与其他方法的区别**
+- 多人设Prompting中，所有参与者能看到完整历史
+- Multipersona prompting中，不同角色共享对话历史
+- 只有Meta-prompting采用Fresh eyes机制，确保每个专家提供独立观点
 
-
-**效果**
-
-
-```
-
-
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
-
-```
-**问题**  
-
-
-**方法** 
-
-
-**效果**
-
-
-```
-
-
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
-
-```
-**问题**  
-
-
-**方法** 
-
+**解决的问题**
+- 解决了大语言模型容易"坚持错误"的问题
+- 减少了模型过度自信的倾向
+- 提高了问题解决的准确性和可靠性
+总的来说，Fresh eyes机制通过限制信息访问，确保每个专家能够提供真正独立的观点，这有助于发现错误并产生更好的解决方案。这是Meta-prompting框架的一个重要创新点。
 
 **效果**
+meta-prompting 不仅能提升整体性能，而且在多个不同任务上也往往能实现新的最佳结果。
+其灵活性尤其值得称道：指挥员模型有能力调用专家模型（基本上就是其本身，只是指令不一样）执行多种不同的功能。
+这些功能可能包括点评之前的输出、为特定任务选取特定 AI 人设、优化生成的内容、确保最终输出在实质和形式上都满足所需标准。
 
 
 ```
 
 
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
+## DOC
+> 论文：[Doc: Improving long story coherence with detailed outline control. ](https://arxiv.org/pdf/2212.10077)    
+> 2022.12  
+> DOC: Detailed Outline Control, 详细大纲控制
 
-```
-**问题**  
-
-
-**方法** 
+![DOC_overview.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1735202990524_DOC_overview.jpg)
+![DOC_detailed_outliner.jpg](https://cloudflare-imgbed-4vb.pages.dev/file/1735203069717_DOC_detailed_outliner.jpg)
 
 
-**效果**
 
-
-```
-
-
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
-> 2024.02  
-> 
-
-```
-**问题**  
-
-
-**方法** 
-
-
-**效果**
-
-
-```
-
-
-## SWAG
-> 论文：[SWAG: Storytelling With Action Guidance](https://arxiv.org/pdf/2402.03483)    
+## Template
+> 论文：[Paper-Title](Paper-URL)    
 > 2024.02  
 > 
 

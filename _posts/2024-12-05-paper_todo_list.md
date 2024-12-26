@@ -88,6 +88,7 @@ description: 已读和待读Paper列表
 |  37  |  ⏳  | 2024 | 2024-12-13 | - | StyleStudio: Text-Driven Style Transfer with Selective Control of Style Elements |
 |  38  |  ⏳  | 2024 | 2024-12-13 | - | EasyRef: Omni-Generalized Group Image Reference for Diffusion Models via Multimodal LLM |
 |  39  |  ⏳  | 2024 | 2024-12-17 | - | SynerGen-VL: Towards Synergistic Image Understanding and Generation with Vision Experts and Token Folding |
+|  40  |  ⏳  | 2024 | 2024-12-17 | - | SEED-Story: Multimodal Long Story Generation with Large Language Model |
 {: .table-striped .table-hover}
 
 
@@ -132,7 +133,7 @@ description: 已读和待读Paper列表
 |  28  |  ✅  | 2024 | 2024-12-19 | 2024-12-25 | [How good is my story? Towards quantitative metrics for evaluating LLM-generated XAI narratives](https://lyk0014.github.io/posts/Generate_story_overview/)   |
 |  29  |  ✅  | 2024 | 2024-12-24 | 2024-12-25 | [Dramatron](https://lyk0014.github.io/posts/Generate_story_overview/) |
 |  30  |  ✅  | 2024 | 2024-12-25 | 2024-12-25 | [Meta-Prompting: Enhancing Language Models with Task-Agnostic Scaffolding](https://lyk0014.github.io/posts/Generate_story_overview/) |
-
+|  31  |  ✅  | 2024 | 2024-12-25 | 2024-12-26 | [Doc: Improving long story coherence with detailed outline control](https://lyk0014.github.io/posts/Generate_story_overview/) |
 {: .table-striped .table-hover}
 
 
@@ -152,7 +153,7 @@ description: 已读和待读Paper列表
 |  4  |  ✅  | 2023 | 2024-11-05 | 2024-11-28 | [GoT: Graph of Thoughts: Solving Elaborate Problems with Large Language Models](https://lyk0014.github.io/posts/2024_XoT/) |
 |  5  |  ✅  | 2023 | 2024-11-05 | 2024-11-28 | [XoT: Everything of Thoughts: Defying the Law of Penrose Triangle for Thought Generation](https://lyk0014.github.io/posts/2024_XoT/) |
 |  6  |  ✅  | 2024 | 2024-11-05 | 2024-11-28 | [DoT: On the Diagram of Thought](https://lyk0014.github.io/posts/2024_XoT/) |
-|  7  |  ��  | 2022 | 2024-12-05 | - | Constitutional AI: Harmlessness from AI Feedback |
+|  7  |  ⏳  | 2022 | 2024-12-05 | - | Constitutional AI: Harmlessness from AI Feedback |
 |  8  |  ⏳  | 2024 | 2024-12-05 | - | CUT YOUR LOSSES IN LARGE-VOCABULARY LANGUAGE MODELS |
 |  9  |  ⏳  | 2024 | 2024-12-05 | - | Chain-of-Thought Reasoning without Prompting |
 |  10  |  ⏳  | 2024 | 2024-12-05 | - | Evaluating the role of ‘Constitutions’ for learning from AI feedback |
@@ -226,14 +227,16 @@ description: 已读和待读Paper列表
 |  78  |  ⏳  | 2024 | 2024-12-25 | - | NILE: Internal Consistency Alignment in Large Language Models |
 |  79  |  ⏳  | 2024 | 2024-12-25 | - | OpenRFT: Adapting Reasoning Foundation Model for Domain-specific Tasks with Reinforcement Fine-Tuning |
 |  80  |  ⏳  | 2024 | 2024-12-25 | - | Friends-MMC: A Dataset for Multi-modal Multi-party Conversation Understanding |
-|  81  |  ⏳  | 2024 | 2024-12-25 | - | 
+|  81  |  ⏳  | 2024 | 2024-12-26 | - | Fourier Position Embedding: Enhancing Attention's Periodic Extension for Length Generalization |
+|  82  |  ⏳  | 2024 | 2024-12-26 | - | In Case You Missed It: ARC 'Challenge' Is Not That Challenging |
+|  83  |  ⏳  | 2024 | 2024-12-26 | - | Ensembling Large Language Models with Process Reward-Guided Tree Search for Better Complex Reasoning |
 {: .table-striped .table-hover}
 
 ## LLM - RAG
 
 > 计划实现目标
 > - 1. 实现知识库问答
-> - 2. 实现可联网+��识库的问答 - Perplexity
+> - 2. 实现可联网+知识库的问答 - Perplexity
 > - 3. 可使用Claude的MCP模式构建问答
 
 📊 **统计**
@@ -254,6 +257,7 @@ description: 已读和待读Paper列表
 |  8  |  ⏳  | 2024 | 2024-12-20 | - | Progressive Multimodal Reasoning via Active Retrieval |
 |  9  |  ⏳  | 2024 | 2024-12-20 | - | MegaPairs: Massive Data Synthesis For Universal Multimodal Retrieval |
 |  10  |  ⏳  | 2024 | 2024-12-20 | - | RAG-RewardBench: Benchmarking Reward Models in Retrieval Augmented Generation for Preference Alignment |
+|  11  |  ⏳  | 2024 | 2024-12-26 | - | SKETCH: Structured Knowledge Enhanced Text Comprehension for Holistic Retrieval |
 
 ## MLLM
 
