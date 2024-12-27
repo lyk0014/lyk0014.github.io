@@ -13,30 +13,30 @@ description: 粗读，汇总目前收集到的关于Novel Generation的论文【
 共31篇论文，从中筛选13篇值得精读的论文。
 
 ### Outline Generation
-
+- DOC：详细大纲控制
+- RECURRENTGPT: 递归生成长文本
+- Improving Pacing: 改进节奏
 
 ### Plot Generation
 - MoPS: 结构故事设定，创造情节
 - SWAG: 故事情节搜索
 - WHAT-IF: 探索分支叙事，互动小说，元提示
+- Suspenseful Stories: 悬疑故事
+
+### Long-form Story Generation
+- DOME: 长故事生成，叙事框架结合知识图谱
+- Dramatron: 分层故事生成, 人工介入
 
 ### Training
 - LongWriter: 长故事生成, 训练GLM-9B
 - Weaver: 写作专属模型
 
-
-
-
-- RECURRENTGPT: 递归生成长文本
-- Weaver: 写作专属模型，
-- Suspenseful Stories: 悬疑故事
-
-- DOME: 长故事生成，叙事框架结合知识图谱
-- Improving Pacing: 改进节奏
+### Prompt Tricks
 - Reflections & Resonance: 多Agent，反思与共鸣
-- Dramatron: 分层故事生成, 人工介入
 - Meta-Prompt: 元提示, Fresh-eye(子任务只能看到有限提示)
-- DOC：详细大纲控制
+
+
+
 
 ## LongStory 
 > 论文：[LongStory: Coherent, Complete and Length Controlled Long story Generation](https://arxiv.org/abs/2311.15208)    

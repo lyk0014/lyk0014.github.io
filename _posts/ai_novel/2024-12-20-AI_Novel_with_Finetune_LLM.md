@@ -1,11 +1,11 @@
 ---
 title: Processing AI Novel 
 author: LYK
-date: 2024-12-24 19:00:00 +0800
+date: 2024-12-26 19:00:00 +0800
 categories: [AIA, AI Novel]
 tags: [AI Novel, Thinking, Planning, Finetune, LLM]
 pin: false
-published: false
+published: true
 description: 技术方案 - 如何使用AI打造一套内容生产系统（网文）
 ---
 
