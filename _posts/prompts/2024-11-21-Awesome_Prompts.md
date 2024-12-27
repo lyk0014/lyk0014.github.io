@@ -4,7 +4,8 @@ author: LYK
 date: 2024-11-21 19:00:00 +0800
 categories: [AIA, PromptEngineering]
 tags: [Prompt, Thinking, CoT, o1, Claude]
-pin: true
+pin: false
+published: true
 description: 收集的好用的Prompts
 media_subpath: '/posts/20241121'
 ---
