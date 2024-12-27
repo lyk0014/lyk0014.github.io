@@ -230,6 +230,7 @@ description: 已读和待读Paper列表
 |  81  |  ⏳  | 2024 | 2024-12-26 | - | Fourier Position Embedding: Enhancing Attention's Periodic Extension for Length Generalization |
 |  82  |  ⏳  | 2024 | 2024-12-26 | - | In Case You Missed It: ARC 'Challenge' Is Not That Challenging |
 |  83  |  ⏳  | 2024 | 2024-12-26 | - | Ensembling Large Language Models with Process Reward-Guided Tree Search for Better Complex Reasoning |
+|  84  |  ⏳  | 2024 | 2024-12-27 | - | Token-Budget-Aware LLM Reasoning |
 {: .table-striped .table-hover}
 
 ## LLM - RAG
