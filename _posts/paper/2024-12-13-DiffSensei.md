@@ -4,7 +4,7 @@ author: LYK
 date: 2024-12-12 09:00:00 +0800
 categories: [Reading, Paper]
 tags: [MLLM, Manga]
-pin: true
+pin: false
 published: true
 description: 精读DiffSensei
 ---

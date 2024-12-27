@@ -4,7 +4,7 @@ author: LYK
 date: 2024-12-05 19:00:00 +0800
 categories: [AIA, AI Novel]
 tags: [AI Novel, Thinking, Revision, Human Feedback, Peer Review]
-pin: true
+pin: false
 published: false
 description: 技术方案 - 如何结合专业反馈（Human Feedback、Peer Review、Critic Agent）, 打造完整的网文内容生产系统
 ---

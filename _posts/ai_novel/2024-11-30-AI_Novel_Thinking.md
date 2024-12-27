@@ -4,7 +4,7 @@ author: LYK
 date: 2024-11-28 19:00:00 +0800
 categories: [AIA, AI Novel]
 tags: [AI Novel, Thinking]
-pin: true
+pin: false
 published: true
 description: 如何使用AI打造一套内容生产系统（网文）
 media_subpath: '/posts/20241127'

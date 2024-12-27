@@ -4,7 +4,7 @@ author: LYK
 date: 2029-01-01 00:00:00 +0800
 categories: [Reading, Paper]
 tags: [Template]
-pin: true
+pin: false
 published: false
 description: Template
 ---

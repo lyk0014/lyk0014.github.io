@@ -5,7 +5,7 @@ date: 2024-12-01 19:00:00 +0800
 categories: [Thinking, Spark]
 tags: [list]
 pin: true
-published: false
+published: true
 description: 
 status: todo  # todo, draft, completed, published。
 media_subpath: '/posts/20241128'

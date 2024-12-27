@@ -4,7 +4,7 @@ author: LYK
 date: 2024-11-27 19:00:00 +0800
 categories: [Writing, AI Novel]
 tags: [AI Novel, Prompts, Chinese, WebNovel]
-pin: true
+pin: false
 published: true
 description: 小说码字三字经，网上复制
 media_subpath: '/posts/20241128'

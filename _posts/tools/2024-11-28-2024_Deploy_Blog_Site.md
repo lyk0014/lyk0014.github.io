@@ -4,11 +4,9 @@ author: LYK
 date: 2024-11-27 19:00:00 +0800
 categories: [Writing, Tools]
 tags: [Tools, Blog, Writing, Jekyll, Github pages, Cloudflare]
-pin: true
+pin: false
 published: true
-status: published  # todo, draft, completed, published
 description: 如何从头部署一个属于你自己的博客？
-media_subpath: '/posts/20241128'
 ---
 
 

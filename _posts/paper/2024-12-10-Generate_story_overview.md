@@ -4,7 +4,7 @@ author: LYK
 date: 2024-12-25 00:00:00 +0800
 categories: [Reading, Paper]
 tags: [Novel Generation, Novel, LLM, Story]
-pin: true
+pin: false
 published: true
 description: 粗读，汇总目前收集到的关于Novel Generation的论文【截止202412】
 ---
