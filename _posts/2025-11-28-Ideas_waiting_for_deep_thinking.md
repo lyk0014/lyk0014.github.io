@@ -45,6 +45,14 @@ media_subpath: '/posts/20241128'
 - 叙事的游戏化 - 实际地把Player和Agent的活动空间推上去（方便提桶跑路到游戏开发）
 - 小冰李笛：真正的AI信仰者不该FOMO
 - openai 嵌入实时语音对话SDK
+- 王兴 - https://www.zhihu.com/question/19597590/answer/3204987013 |
+- 人工智能如何让世界变得更美好  |
+- [罕见！云计算一哥CTO，现场不发产品只讲教训](https://mp.weixin.qq.com/s/sXKMFKU4Ytnfqb7Ti1l3uA)  |
+- 李想公开课
+- 王兴饭否
+- 天涯神贴-如何一年赚100万
+- 检验创业想法可行性（https://mp.weixin.qq.com/s/apj-_GS-gBAwFXpokax6eQ）
+- Anthropic AI-Agents 2024年度总结
 
 
 

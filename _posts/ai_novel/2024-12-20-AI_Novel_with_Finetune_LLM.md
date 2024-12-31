@@ -1,9 +1,9 @@
 ---
-title: Processing AI Novel 
+title: Processing AI Novel with Finetune LLM
 author: LYK
 date: 2024-12-26 19:00:00 +0800
 categories: [AIA, AI Novel]
-tags: [AI Novel, Thinking, Planning, Finetune, LLM]
+tags: [AI Novel, Thinking, Planning, Finetune, LLM, Prompt Engineering]
 pin: false
 published: true
 description: 技术方案 - 如何使用AI打造一套内容生产系统（网文）
@@ -11,6 +11,34 @@ description: 技术方案 - 如何使用AI打造一套内容生产系统（网�
 
 **项目名**：内容生产系统（网文）  
 **目标**：基于训练LLM，打造一套完整且自动化的内容生产系统（网文）  
+
+
+## 参考论文
+## Summary - Papers Worth a Deep Read
+共31篇论文，从中筛选13篇值得精读的论文。
+### Outline Generation
+- DOC：详细大纲控制
+- RECURRENTGPT: 递归生成长文本
+- Improving Pacing: 改进节奏
+
+### Plot Generation
+- MoPS: 结构故事设定，创造情节
+- SWAG: 故事情节搜索
+- WHAT-IF: 探索分支叙事，互动小说，元提示
+- Suspenseful Stories: 悬疑故事
+
+### Long-form Story Generation
+- DOME: 长故事生成，叙事框架结合知识图谱
+- Dramatron: 分层故事生成, 人工介入
+
+### Training
+- LongWriter: 长故事生成, 训练GLM-9B
+- Weaver: 写作专属模型
+
+### Prompt Tricks
+- Reflections & Resonance: 多Agent，反思与共鸣
+- Meta-Prompt: 元提示, Fresh-eye(子任务只能看到有限提示)
+
 
 ## 任务梳理
 ### 现有任务梳理
