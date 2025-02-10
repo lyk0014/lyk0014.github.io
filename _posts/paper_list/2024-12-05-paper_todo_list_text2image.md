@@ -62,6 +62,7 @@ description: 已读和待读Paper列表
 |  40  |  ⏳  | 2024 | 2024-12-17 | - | SEED-Story: Multimodal Long Story Generation with Large Language Model |
 |  41  |  ⏳  | 2024 | 2024-12-30 | - | From Elements to Design: A Layered Approach for Automatic Graphic Design Composition |
 |  42  |  ⏳  | 2024 | 2024-12-31 | - | 1.58-bit FLUX: A New Paradigm for Efficient Image Generation |
+|  43  |  ⏳  | 2024 | 2025-01-04 | - | Infinity: Scaling Bitwise AutoRegressive Modeling for High-Resolution Image Synthesis |
 {: .table-striped .table-hover}
 
 

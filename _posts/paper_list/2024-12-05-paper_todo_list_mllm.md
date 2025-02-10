@@ -34,6 +34,7 @@ description: MLLM相关已读和待读Paper列表
 |  11  |  ⏳  | 2024 | 2024-12-11 | - | Exploring Multi-Grained Concept Annotations for Multimodal Large Language Models |
 |  12  |  ⏳  | 2024 | 2024-12-31 | - | Next Token Prediction Towards Multimodal Intelligence: A Comprehensive Survey |
 |  13  |  ⏳  | 2024 | 2024-12-31 | - | Task Preference Optimization: Improving Multimodal Large Language Models with Vision Task Alignment |
+|  14  |  ⏳  | 2024 | 2025-01-14 | - | LlamaV-o1: Rethinking Step-by-step Visual Reasoning in LLMs |
 
 ## 图例说明：
 - ⏳ 待读
