@@ -32,7 +32,7 @@ description: About DeepSeek R1 & Zero
 
 
 ## Reference
-- [为什么说DeepSeek的R1-Zero比R1更值得关注？](https://mp.weixin.qq.com/s/dclhYVHDVodQidjTNztIAw)
+- [为什么说DeepSeek的R1-Zero比R1更值得关注？]( )
 - [对 DeepSeek 和智能下半场的几条判断](https://mp.weixin.qq.com/s/NMW2p8xalh9c8lTLN9B5gg)
 - [华人研究团队揭秘：DeepSeek-R1-Zero或许并不存在「顿悟时刻」](https://mp.weixin.qq.com/s/_VK7fm8p3mpfhPh_zBdagA)
 - [OpenAI o3-mini 被曝大量使用中文推理，有什么意义？](https://www.zhihu.com/question/11319415340/answer/94111685009)
